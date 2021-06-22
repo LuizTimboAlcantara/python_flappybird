@@ -11,7 +11,7 @@ class Game:
         self.ground = Obj("assets/ground.png", 0, 480, self.all_sprites)
         self.ground2 = Obj("assets/ground.png", 0, 480, self.all_sprites)
 
-        self.bird = Obj("assets/bird1.png", 50, 320, self.all_sprites)
+        self.bird = Bird("assets/bird1.png", 50, 320, self.all_sprites)
 
         self.ticks = 0
 

@@ -33,7 +33,7 @@ class Coin(Obj):
 
     def update(self, *args):
         self.move()
-        self.animate()
+        self.anim()
 
     def move(self):
         self.rect[0] -= 3
@@ -41,7 +41,7 @@ class Coin(Obj):
         if self.rect[0] <= -100:
             self.kill()
 
-    def animate(self):
+    def anim(self):
         self.ticks = (self.ticks + 1) % 6
         self.image = pygame.image.load("assets/" + str(self.ticks) + ".png")
 
@@ -53,16 +53,15 @@ class Bird(Obj):
         self.ticks = 0
 
     def update(self, *args):
-        self.animate()
+        self.anim()
         self.move()
 
-    def animate(self):
-        self.ticks(self.ticks + 1) % 4
-        self.image = pygame.image.load(
-            "assets/bird" + str(self.ticks) + ".png")
+    def anim(self):
+        self.ticks = (self.ticks + 1) % 4
+        self.image = pygame.image.load("assets/bird" + str(self.ticks) + ".png")
 
     def move(self):
-        key = pygame.key.pressed()
+        key = pygame.key.get_pressed()
 
         if key[pygame.K_SPACE]:
             print("voar")
