@@ -1,4 +1,4 @@
-from obj import Obj, Pipe, Coin, Bird
+from obj import Obj, Pipe, Coin, Bird, Text
 import pygame
 import random
 
@@ -14,12 +14,15 @@ class Game:
         self.ground = Obj("assets/ground.png", 0, 480, self.all_sprites)
         self.ground2 = Obj("assets/ground.png", 0, 480, self.all_sprites)
 
+        self.score = Text(100, "0")
+
         self.bird = Bird("assets/bird1.png", 50, 320, self.all_sprites)
 
         self.ticks = 0
 
     def draw(self, window):
         self.all_sprites.draw(window)
+        self.score.draw(window, 150, 50)
 
     def update(self):
         self.move_bg()
@@ -30,6 +33,7 @@ class Game:
             self.spaw_pipes()
             self.bird.colision_coin(self.coin_group)
             self.bird.colision_pipes(self.pipes_group)
+            self.score.text_update(str(self.bird.pts))
 
     def move_bg(self):
         self.bg.rect[0] -= 3

@@ -1,5 +1,7 @@
 import pygame
 
+pygame.font.init()
+
 
 class Obj(pygame.sprite.Sprite):
     def __init__(self, img, x, y, *groups):
@@ -54,6 +56,8 @@ class Bird(Obj):
         self.vel = 4
         self.grav = 1
 
+        self.pts = 0
+
         self.play = True
 
     def update(self, *args):
@@ -93,4 +97,16 @@ class Bird(Obj):
         col = pygame.sprite.spritecollide(self, group, True)
 
         if col:
-            print("Moeda")
+            self.pts += 1
+
+
+class Text:
+    def __init__(self, size, text):
+        self.font = pygame.font.Font("assets/font/font.ttf", size)
+        self.render = self.font.render(text, True, (255, 255, 255))
+
+    def draw(self, window, x, y):
+        window.blit(self.render, (x, y))
+
+    def text_update(self, text):
+        self.render = self.font.render(text, True, (255, 255, 255))
