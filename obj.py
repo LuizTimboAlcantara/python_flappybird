@@ -44,3 +44,25 @@ class Coin(Obj):
     def animate(self):
         self.ticks = (self.ticks + 1) % 6
         self.image = pygame.image.load("assets/" + str(self.ticks) + ".png")
+
+
+class Bird(Obj):
+    def __init__(self, img, x, y, *groups):
+        super().__init__(img, x, y, *groups)
+
+        self.ticks = 0
+
+    def update(self, *args):
+        self.animate()
+        self.move()
+
+    def animate(self):
+        self.ticks(self.ticks + 1) % 4
+        self.image = pygame.image.load(
+            "assets/bird" + str(self.ticks) + ".png")
+
+    def move(self):
+        key = pygame.key.pressed()
+
+        if key[pygame.K_SPACE]:
+            print("voar")

@@ -1,4 +1,4 @@
-from obj import Obj, Pipe, Coin
+from obj import Obj, Pipe, Coin, Bird
 import pygame
 import random
 
@@ -10,6 +10,8 @@ class Game:
         self.bg2 = Obj("assets/sky.png", 360, 0, self.all_sprites)
         self.ground = Obj("assets/ground.png", 0, 480, self.all_sprites)
         self.ground2 = Obj("assets/ground.png", 0, 480, self.all_sprites)
+
+        self.bird = Obj("assets/bird1.png", 50, 320, self.all_sprites)
 
         self.ticks = 0
 
