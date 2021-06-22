@@ -1,5 +1,6 @@
 import pygame
 from game import Game
+from menu import Menu
 
 
 class Main:
@@ -11,6 +12,7 @@ class Main:
         self.fps = pygame.time.Clock()
 
         self.game = Game()
+        self.menu = Menu()
 
     def events(self):
         for event in pygame.event.get():
@@ -18,8 +20,10 @@ class Main:
                 self.loop = False
 
     def draw(self):
-        self.game.draw(self.window)
-        self.game.update()
+        # self.game.draw(self.window)
+        # self.game.update()
+        self.menu.draw(self.window)
+        self.menu.update()
 
     def update(self):
         while self.loop:
