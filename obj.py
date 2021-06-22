@@ -54,6 +54,8 @@ class Bird(Obj):
         self.vel = 4
         self.grav = 1
 
+        self.play = True
+
     def update(self, *args):
         self.anim()
         self.move()
@@ -71,8 +73,9 @@ class Bird(Obj):
         if self.vel >= 10:
             self.vel = 10
 
-        if key[pygame.K_SPACE]:
-            self.vel -= 5
+        if self.play:
+            if key[pygame.K_SPACE]:
+                self.vel -= 5
 
         if self.rect[1] >= 440:
             self.rect[1] = 440
@@ -84,7 +87,7 @@ class Bird(Obj):
         col = pygame.sprite.spritecollide(self, group, False)
 
         if col:
-            print("Cano")
+            self.play = False
 
     def colision_coin(self, group):
         col = pygame.sprite.spritecollide(self, group, True)

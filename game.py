@@ -24,10 +24,12 @@ class Game:
     def update(self):
         self.move_bg()
         self.move_ground()
-        self.spaw_pipes()
-        self.bird.colision_coin(self.coin_group )
-        self.bird.colision_pipes(self.pipes_group)
         self.all_sprites.update()
+
+        if self.bird.play:
+            self.spaw_pipes()
+            self.bird.colision_coin(self.coin_group)
+            self.bird.colision_pipes(self.pipes_group)
 
     def move_bg(self):
         self.bg.rect[0] -= 3
