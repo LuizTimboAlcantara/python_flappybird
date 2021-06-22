@@ -51,6 +51,8 @@ class Bird(Obj):
         super().__init__(img, x, y, *groups)
 
         self.ticks = 0
+        self.vel = 4
+        self.grav = 1
 
     def update(self, *args):
         self.anim()
@@ -63,5 +65,17 @@ class Bird(Obj):
     def move(self):
         key = pygame.key.get_pressed()
 
+        self.vel += self.grav
+        self.rect[1] += self.vel
+
+        if self.vel >= 10:
+            self.vel = 10
+
         if key[pygame.K_SPACE]:
-            print("voar")
+            self.vel -= 5
+
+        if self.rect[1] >= 440:
+            self.rect[1] = 440
+        elif self.rect[1] <= 0:
+            self.rect[1] = 0
+            self.vel = 4
