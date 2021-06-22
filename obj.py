@@ -79,3 +79,15 @@ class Bird(Obj):
         elif self.rect[1] <= 0:
             self.rect[1] = 0
             self.vel = 4
+
+    def colision_pipes(self, group):
+        col = pygame.sprite.spritecollide(self, group, False)
+
+        if col:
+            print("Cano")
+
+    def colision_coin(self, group):
+        col = pygame.sprite.spritecollide(self, group, True)
+
+        if col:
+            print("Moeda")

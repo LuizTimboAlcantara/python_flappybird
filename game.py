@@ -6,6 +6,9 @@ import random
 class Game:
     def __init__(self):
         self.all_sprites = pygame.sprite.Group()
+        self.coin_group = pygame.sprite.Group()
+        self.pipes_group = pygame.sprite.Group()
+
         self.bg = Obj("assets/sky.png", 0, 0, self.all_sprites)
         self.bg2 = Obj("assets/sky.png", 360, 0, self.all_sprites)
         self.ground = Obj("assets/ground.png", 0, 480, self.all_sprites)
@@ -22,6 +25,8 @@ class Game:
         self.move_bg()
         self.move_ground()
         self.spaw_pipes()
+        self.bird.colision_coin(self.coin_group )
+        self.bird.colision_pipes(self.pipes_group)
         self.all_sprites.update()
 
     def move_bg(self):
@@ -50,8 +55,8 @@ class Game:
         if self.ticks >= random.randrange(80, 110):
             self.ticks = 0
             pipe = Pipe("assets/pipe1.png", 360,
-                        random.randrange(300, 450), self.all_sprites)
+                        random.randrange(300, 450), self.all_sprites, self.pipes_group)
             pipe2 = Pipe("assets/pipe2.png", 360,
-                         pipe.rect[1] - 550, self.all_sprites)
+                         pipe.rect[1] - 550, self.all_sprites, self.pipes_group)
             coin = Coin("assets/0.png", 388,
-                        pipe.rect[0] - 120, self.all_sprites)
+                        pipe.rect[0] - 120, self.all_sprites, self.coin_group)
